@@ -28,3 +28,5 @@ dependencies {
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" /> 
 ```
+##java中调用
+###请参考https://github.com/lovetuzitong/MultiImageSelector

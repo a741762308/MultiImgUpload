@@ -12,9 +12,9 @@ dependencies
     compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.0'
 }
 ###Manifest文件
->>><uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
->>>  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
- >>>   <uses-permission android:name="android.permission.CAMERA" />
- >>> <activity
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+<uses-permission android:name="android.permission.CAMERA" />
+<activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />      <activity android:name="me.nereo.multi_image_selector.ViewPhotoActivity" />

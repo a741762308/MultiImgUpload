@@ -7,16 +7,14 @@ https://github.com/lovetuzitong/MultiImageSelector
 ###使用方法
 #######鉴于lovetuzitong并没有上传maven或jcenter，我仅是将代码上传
 ###build.gradle文件
-dependencies
-{
+dependencies{\<br>  
     compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.0'
 }
 ###Manifest文件
-####权限
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.CAMERA" />
-####声明
+ 
   <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />

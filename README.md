@@ -30,3 +30,8 @@ dependencies {
 ```
 ##java中调用
 ###请参考https://github.com/lovetuzitong/MultiImageSelector
+##例子中使用的第三方库
+```java
+    compile 'org.xutils:xutils:3.1.26'
+    compile 'com.bm.photoview:library:1.3.6'
+```

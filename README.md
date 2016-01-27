@@ -21,8 +21,8 @@ dependencies {
 ```
 ###需要声明的activity
 ```java
+ <activity android:name="me.nereo.multi_image_selector.ViewPhotoActivity" />
  <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" /> 
-            <activity android:name="me.nereo.multi_image_selector.ViewPhotoActivity" />
 ```

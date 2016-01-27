@@ -6,7 +6,7 @@ version = "1.0.0"
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-    resourcePrefix "DQ"
+    resourcePrefix ""
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
@@ -18,6 +18,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions{
+        abortOnError false
     }
 }
 dependencies {
@@ -37,7 +40,7 @@ install {
             project {
                 packaging 'aar'
                 // Add your description here
-                name 'Android Commonly used utils'  //项目描述
+                name 'Android MultiPhoto Select'  //项目描述
                 url siteUrl
                 // Set your license
                 licenses {
@@ -62,11 +65,38 @@ install {
         }
     }
 }
+android.libraryVariants.all { variant ->
+    println variant.javaCompile.classpath.files
+    if(variant.name == 'release') { //我们只需 release 的 javadoc
+        task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+            // title = ''
+            // description = ''
+            source = variant.javaCompile.source
+            classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath())
+            options {
+                encoding "utf-8"
+                links "http://docs.oracle.com/javase/7/docs/api/"
+                linksOffline "http://d.android.com/reference", "${android.sdkDirectory}/docs/reference"
+            }
+            exclude '**/BuildConfig.java'
+            exclude '**/R.java'
+        }
+        task("javadoc${variant.name.capitalize()}Jar", type: Jar, dependsOn: "generate${variant.name.capitalize()}Javadoc") {
+            classifier = 'javadoc'
+            from tasks.getByName("generate${variant.name.capitalize()}Javadoc").destinationDir
+        }
+        artifacts {
+            archives tasks.getByName("javadoc${variant.name.capitalize()}Jar")
+        }
+    }
+}
+
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 task javadoc(type: Javadoc) {
+    options.encoding = "UTF-8"
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -86,10 +116,12 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"  //发布到Bintray的那个仓库里，默认账户有四个库，我们这里上传到maven库
-        name = "MultiImageSelector"  //发布到Bintray上的项目名字
+        name = "multi-image"  //发布到Bintray上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
     }
 }
+
+

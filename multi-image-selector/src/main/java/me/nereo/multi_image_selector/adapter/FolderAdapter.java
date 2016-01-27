@@ -40,7 +40,7 @@ public class FolderAdapter extends BaseAdapter {
     }
 
     /**
-     * set data
+     * 设置数据集
      *
      * @param folders
      */

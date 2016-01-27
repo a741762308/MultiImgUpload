@@ -18,13 +18,20 @@ android {
         }
     }
 }
+repositories {
+    maven {
+        url  "http://dl.bintray.com/a741762308/maven"
+    }
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
-    compile project(':multi-image-selector')
     compile 'org.xutils:xutils:3.1.26'
     compile 'com.bm.photoview:library:1.3.6'
     compile 'com.google.code.gson:gson:2.5'
+    compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.0'
+//    compile project(':multi-image-selector')
 }
+

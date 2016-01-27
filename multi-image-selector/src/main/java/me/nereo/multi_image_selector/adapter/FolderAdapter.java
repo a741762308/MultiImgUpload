@@ -89,7 +89,7 @@ public class FolderAdapter extends BaseAdapter {
                     //显示图片
                     ImageOptions options = new ImageOptions.Builder()
                             .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                            .setSize(R.dimen.folder_cover_size, R.dimen.folder_cover_size)
+//                            .setSize(R.dimen.folder_cover_size, R.dimen.folder_cover_size)
                             .setFailureDrawableId(R.drawable.default_error)
                             .build();
                     x.image().bind(holder.cover, f.cover.path, options);
@@ -163,8 +163,8 @@ public class FolderAdapter extends BaseAdapter {
             // 显示图片
             if (data.cover != null) {
                 ImageOptions options = new ImageOptions.Builder()
-                        .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                        .setSize(R.dimen.folder_cover_size, R.dimen.folder_cover_size)
+                        .setCrop(true)
+//                        .setSize(R.dimen.folder_cover_size, R.dimen.folder_cover_size)
                         .setFailureDrawableId(R.drawable.default_error)
                         .build();
                 x.image().bind(cover, data.cover.path, options);

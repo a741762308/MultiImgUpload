@@ -223,8 +223,8 @@ public class ImageGridAdapter extends BaseAdapter {
             if (imageFile.exists()) {
                 // 显示图片
                 ImageOptions options = new ImageOptions.Builder()
-                        .setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-                        .setSize(mGridWidth, mGridWidth)
+                        .setCrop(true)
+//                        .setSize(mGridWidth, mGridWidth)
                         .setFailureDrawableId(R.drawable.default_error)
                         .build();
                 x.image().bind(image, data.path, options);

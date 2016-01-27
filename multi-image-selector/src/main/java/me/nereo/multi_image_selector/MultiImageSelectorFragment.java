@@ -1,5 +1,6 @@
 package me.nereo.multi_image_selector;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -38,6 +39,7 @@ import me.nereo.multi_image_selector.adapter.ImageGridAdapter;
 import me.nereo.multi_image_selector.bean.Folder;
 import me.nereo.multi_image_selector.bean.Image;
 import me.nereo.multi_image_selector.utils.FileUtils;
+import me.nereo.multi_image_selector.utils.PermissionsUtils;
 import me.nereo.multi_image_selector.utils.ScreenUtils;
 
 /**
@@ -199,7 +201,11 @@ public class MultiImageSelectorFragment extends Fragment {
                 if (mImageAdapter.isShowCamera()) {
                     // 如果显示照相机，则第一个Grid显示为照相机，处理特殊逻辑
                     if (i == 0) {
-                        showCameraAction();
+                        if (PermissionsUtils.hasPermissions(getActivity(), Manifest.permission.CAMERA)) {
+                            showCameraAction();
+                        } else {
+                            Toast.makeText(getActivity(), "请到应用管理中授予权限", Toast.LENGTH_LONG).show();
+                        }
                     } else {
                         // 正常操作
                         Image image = (Image) adapterView.getAdapter().getItem(i);

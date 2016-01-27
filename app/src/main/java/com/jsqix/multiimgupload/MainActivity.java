@@ -1,5 +1,6 @@
 package com.jsqix.multiimgupload;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+import me.nereo.multi_image_selector.utils.PermissionsUtils;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
@@ -39,8 +41,14 @@ public class MainActivity extends BaseActivity {
         this.data.add("add_image.png");
         imgsGridAdapter = new ImgsGridAdapter(this, data);
         gridView.setAdapter(imgsGridAdapter);
+        //android 6.0权限问题
+        requestPermissions();
+
     }
 
+    private void requestPermissions() {
+        PermissionsUtils.requestPermissions(this, Manifest.permission.WRITE_EXTERNAL_STORAGE, 100);
+    }
 
     @Event(value = {R.id.btn_submit})
     private void click(View v) {
@@ -64,5 +72,13 @@ public class MainActivity extends BaseActivity {
                 imgsGridAdapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == 100) {
+            PermissionsUtils.requestPermissions(this, Manifest.permission.CAMERA, 101);
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

@@ -1,3 +1,4 @@
 #MultiImgUpload
 ====
-参考lovetuzitong/MultiImageSelectorhttps://github.com/lovetuzitong/MultiImageSelector
+参考lovetuzitong/MultiImageSelector
+https://github.com/lovetuzitong/MultiImageSelector

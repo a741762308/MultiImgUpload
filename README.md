@@ -12,3 +12,17 @@ dependencies {
   compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.0.4'
 }
 ```
+##manifest文件
+###权限
+```java
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+<uses-permission android:name="android.permission.CAMERA" />
+```
+###需要声明的activity
+```java
+ <activity
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize" /> 
+            <activity android:name="me.nereo.multi_image_selector.ViewPhotoActivity" />
+```

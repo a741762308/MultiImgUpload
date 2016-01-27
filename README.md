@@ -11,7 +11,7 @@ https://github.com/lovetuzitong/MultiImageSelector
 ## build.gradle文件
 ```java
 dependencies {
-  compile 'com.wuxiaolong.pullloadmorerecyclerview:library:1.0.4'
+  compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.0'
 }
 ```
 ##manifest文件

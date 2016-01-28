@@ -31,7 +31,7 @@ dependencies {
 ##java中调用
 ###请参考https://github.com/lovetuzitong/MultiImageSelector
 ##例子中使用的第三方库
-###[Xitils3](https://github.com/wyouflf/xUtils3)
+###[xUtils3](https://github.com/wyouflf/xUtils3)
 ###[PhotoView](https://github.com/bm-x/PhotoView)
 #License
 

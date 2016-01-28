@@ -31,10 +31,8 @@ dependencies {
 ##java中调用
 ###请参考https://github.com/lovetuzitong/MultiImageSelector
 ##例子中使用的第三方库
-```java
-    compile 'org.xutils:xutils:3.1.26'
-    compile 'com.bm.photoview:library:1.3.6'
-```
+###[Xitils3](https://github.com/wyouflf/xUtils3)
+###[PhotoView](https://github.com/bm-x/PhotoView)
 #License
 
     Copyright 2015 Nereo

@@ -11,7 +11,7 @@ https://github.com/lovetuzitong/MultiImageSelector
 ## build.gradle文件
 ```java
 dependencies {
-  compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.1'
+  compile 'me.nereo.multi_image_selector:multi-image-selector:1.0.2'
 }
 ```
 ##manifest文件

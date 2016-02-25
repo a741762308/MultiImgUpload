@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/black">
+    android:layout_height="match_parent">
 
     <GridView
         android:id="@+id/grid"
@@ -65,5 +64,13 @@
             tools:text="预览(1)" />
 
     </RelativeLayout>
+
+    <View
+        android:id="@+id/pop_bg"
+        android:layout_above="@id/footer"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:layout_height="match_parent"
+        android:background="#b0000000" />
 
 </RelativeLayout>

@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="PopupAnimation">
+        <item name="android:windowEnterAnimation">@anim/push_down_in</item>
+        <item name="android:windowExitAnimation">@anim/push_down_out</item>
+    </style>
+
+</resources>

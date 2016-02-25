@@ -22,10 +22,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -111,6 +114,11 @@ public class MultiImageSelectorFragment extends Fragment {
 
     private File mTmpFile;
 
+    //背景
+    private View popGrayBg;
+    private Animation mInAnim;
+    private Animation mOutAnim;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -129,6 +137,10 @@ public class MultiImageSelectorFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        //背景动画
+        popGrayBg = view.findViewById(R.id.pop_bg);
+        mInAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpha_in);
+        mOutAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpha_out);
 
         // 选择图片数量
         mDesireImageCount = getArguments().getInt(EXTRA_SELECT_COUNT);
@@ -167,6 +179,9 @@ public class MultiImageSelectorFragment extends Fragment {
                     mFolderPopupWindow.dismiss();
                 } else {
                     mFolderPopupWindow.show();
+                    popGrayBg.startAnimation(mInAnim);
+                    popGrayBg.setVisibility(View.VISIBLE);
+
                     int index = mFolderAdapter.getSelectIndex();
                     index = index == 0 ? index : index - 1;
                     mFolderPopupWindow.getListView().setSelection(index);
@@ -238,12 +253,25 @@ public class MultiImageSelectorFragment extends Fragment {
     }
 
     /**
+     * pop监听
+     */
+    class poponDismissListener implements PopupWindow.OnDismissListener {
+
+        @Override
+        public void onDismiss() {
+            popGrayBg.startAnimation(mOutAnim);
+            popGrayBg.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
      * 创建弹出的ListView
      */
     private void createPopupFolderList() {
         Point point = ScreenUtils.getScreenSize(getActivity());
         int width = point.x;
         int height = (int) (point.y * (4.5f / 8.0f));
+
         mFolderPopupWindow = new ListPopupWindow(getActivity());
         mFolderPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         mFolderPopupWindow.setAdapter(mFolderAdapter);
@@ -251,7 +279,9 @@ public class MultiImageSelectorFragment extends Fragment {
         mFolderPopupWindow.setWidth(width);
         mFolderPopupWindow.setHeight(height);
         mFolderPopupWindow.setAnchorView(mPopupAnchorView);
+        mFolderPopupWindow.setAnimationStyle(R.style.PopupAnimation);
         mFolderPopupWindow.setModal(true);
+        mFolderPopupWindow.setOnDismissListener(new poponDismissListener());
         mFolderPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
